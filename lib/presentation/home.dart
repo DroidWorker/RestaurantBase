@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/presentation/menuTop.dart';
+import 'package:restaurant/presentation/reviewScreen.dart';
 import 'package:restaurant/presentation/searchBox.dart';
+import 'package:restaurant/presentation/topItem.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -8,6 +10,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  int screen = 0;
+  //0-main screen
+  //1-review screen
+  //2-about screen
+  //3-menu screen
+  //4-details screen
+  //5-order screen
+  //6-authorisation/registration screen
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +27,12 @@ class _HomeState extends State<Home> {
         automaticallyImplyLeading: false,
 
         title: Row(children: [
-          Image.asset("assets/images/logo.png"),
+          GestureDetector(
+              child: Image.asset("assets/images/logo.png"),
+            onTap: (){setState(() {
+              screen=0;
+            });},
+          ),
           const SizedBox(width: 25),
           Column(
               children:const [
@@ -46,22 +62,47 @@ class _HomeState extends State<Home> {
         ],
         backgroundColor: Colors.black,
       ),
-      body: Container(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            menuTopWidget(),
-            const SizedBox(height: 20),
-            searchBoxWidget(),
-            const SizedBox(height: 20),
-            Image.asset("assets/images/topofday.png")
-            
-          ],
-        ),
-      ),
+      body:
+          screen == 0? Container(
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  menuTopWidget(),
+                  const SizedBox(height: 20),
+                  searchBoxWidget(),
+                  const SizedBox(height: 20),
+                  Image.asset("assets/images/topofday.png"),
+                  const SizedBox(height: 10),
+                  const topItemWidget(topName: "Пицца пепперони", compound: "Томатный соус, салями, сыр Моцарелла, маслины, чесночное масло", price: "15 p", weight: "550 г", imgPath: "assets/images/image.png",),
+                  const SizedBox(height: 10),
+                  const topItemWidget(topName: "Пицца пепперони", compound: "Томатный соус, салями, сыр Моцарелла, маслины, чесночное масло", price: "14 p", weight: "530 г", imgPath: "assets/images/image.png",),
+                  const SizedBox(height: 10),
+                  const topItemWidget(topName: "Пицца пепперони", compound: "Томатный соус, салями, сыр Моцарелла, маслины, чесночное масло", price: "20 p", weight: "560 г", imgPath: "assets/images/image.png",),
+                  const SizedBox(height: 10),
+                  const topItemWidget(topName: "Пицца пепперони", compound: "Томатный соус, салями, сыр Моцарелла, маслины, чесночное масло", price: "17 p", weight: "650 г", imgPath: "assets/images/image.png",),
+                  const SizedBox(height: 10),
+                  const topItemWidget(topName: "Пицца пепперони", compound: "Томатный соус, салями, сыр Моцарелла, маслины, чесночное масло", price: "16 p", weight: "440 г", imgPath: "assets/images/image.png",),
+                  const SizedBox(height: 10)
+                ],
+              ),
+            ),
+          ) : screen==1? ReviewScreenWidget(
+
+          ): screen==2? const SizedBox.shrink(
+
+          ): screen==3? const SizedBox.shrink(
+
+          ): screen==4? const SizedBox.shrink(
+
+          ): screen==5? const SizedBox.shrink(
+
+          ): screen==6? const SizedBox.shrink(
+
+          ): const SizedBox.shrink(),
       drawer: Drawer(
         child: Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Column(
               children: [
                 const SizedBox(
@@ -75,7 +116,7 @@ class _HomeState extends State<Home> {
                       border: Border.all(
                         color: const Color.fromARGB(255, 72, 216, 22),
                       ),
-                      borderRadius: BorderRadius.all(Radius.circular(5))
+                      borderRadius: const BorderRadius.all(const Radius.circular(5))
                   ),
                   child: const Text(
                     "+375 29 481 1 148",
@@ -93,15 +134,15 @@ class _HomeState extends State<Home> {
                     Expanded(
                         child: ElevatedButton(
                         onPressed: (){},
-                        child: Text("ВОЙТИ"),
+                        child: const Text("ВОЙТИ"),
                         style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 255, 173, 78)),
                         )
                     ),
-                    SizedBox(width: 20,),
+                    const SizedBox(width: 20,),
                     Expanded(
                     child: ElevatedButton(
                         onPressed: (){},
-                        child: Text("РЕГИСТРАЦИЯ"),
+                        child: const Text("РЕГИСТРАЦИЯ"),
                         style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 72, 216, 22)),
                         )
                     )
@@ -132,15 +173,17 @@ class _HomeState extends State<Home> {
                     Expanded(
                         child: ElevatedButton(
                           onPressed: (){},
-                          child: Text("ОТЗЫВЫ"),
+                          child: const Text("ОТЗЫВЫ"),
                           style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 72, 216, 22)),
                         )
                     ),
-                    SizedBox(width: 20,),
+                    const SizedBox(width: 20,),
                     Expanded(
                         child: ElevatedButton(
-                          onPressed: (){},
-                          child: Text("О НАС "),
+                          onPressed: (){setState(() {
+                            screen=1;
+                          });},
+                          child: const Text("О НАС "),
                           style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 72, 216, 22)),
                         )
                     )
