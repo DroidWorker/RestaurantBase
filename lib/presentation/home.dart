@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant/presentation/aboutScreen.dart';
 import 'package:restaurant/presentation/menuTop.dart';
 import 'package:restaurant/presentation/reviewScreen.dart';
 import 'package:restaurant/presentation/searchBox.dart';
@@ -89,7 +90,7 @@ class _HomeState extends State<Home> {
             ),
           ) : screen==1? ReviewScreenWidget(
 
-          ): screen==2? const SizedBox.shrink(
+          ): screen==2? AboutScreenWidget(
 
           ): screen==3? const SizedBox.shrink(
 
@@ -172,7 +173,10 @@ class _HomeState extends State<Home> {
                   children: [
                     Expanded(
                         child: ElevatedButton(
-                          onPressed: (){},
+                          onPressed: (){setState(() {
+                            screen=1;
+                            Scaffold.of(context).openEndDrawer();
+                          });},
                           child: const Text("ОТЗЫВЫ"),
                           style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 72, 216, 22)),
                         )
@@ -181,7 +185,8 @@ class _HomeState extends State<Home> {
                     Expanded(
                         child: ElevatedButton(
                           onPressed: (){setState(() {
-                            screen=1;
+                            screen=2;
+                            Scaffold.of(context).openEndDrawer();
                           });},
                           child: const Text("О НАС "),
                           style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 72, 216, 22)),
