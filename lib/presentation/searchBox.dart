@@ -14,7 +14,7 @@ class searchBoxWidget extends StatelessWidget{
       child: Column(
         children: [
           Container(
-            height: 30,
+            height: 40,
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 241, 241, 241),
               borderRadius: BorderRadius.all(Radius.circular(5))

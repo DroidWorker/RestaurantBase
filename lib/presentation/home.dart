@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant/presentation/aboutScreen.dart';
+import 'package:restaurant/presentation/authRegScreen.dart';
 import 'package:restaurant/presentation/menuTop.dart';
 import 'package:restaurant/presentation/reviewScreen.dart';
 import 'package:restaurant/presentation/searchBox.dart';
@@ -19,6 +20,7 @@ class _HomeState extends State<Home> {
   //4-details screen
   //5-order screen
   //6-authorisation/registration screen
+  int screenParam = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -98,8 +100,9 @@ class _HomeState extends State<Home> {
 
           ): screen==5? const SizedBox.shrink(
 
-          ): screen==6? const SizedBox.shrink(
-
+          ): screen==6? AuthRegScreenWidget(
+            mode: screenParam,
+            key: UniqueKey(),
           ): const SizedBox.shrink(),
       drawer: Drawer(
         child: Padding(
@@ -134,7 +137,13 @@ class _HomeState extends State<Home> {
                   children: [
                     Expanded(
                         child: ElevatedButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          setState(() {
+                            screenParam=1;
+                            screen=6;
+                            Navigator.pop(context);
+                          });
+                        },
                         child: const Text("ВОЙТИ"),
                         style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 255, 173, 78)),
                         )
@@ -142,7 +151,13 @@ class _HomeState extends State<Home> {
                     const SizedBox(width: 20,),
                     Expanded(
                     child: ElevatedButton(
-                        onPressed: (){},
+                        onPressed: (){
+                          setState(() {
+                            screenParam=0;
+                            screen=6;
+                            Navigator.pop(context);
+                          });
+                        },
                         child: const Text("РЕГИСТРАЦИЯ"),
                         style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 72, 216, 22)),
                         )
@@ -175,7 +190,8 @@ class _HomeState extends State<Home> {
                         child: ElevatedButton(
                           onPressed: (){setState(() {
                             screen=1;
-                            Scaffold.of(context).openEndDrawer();
+                            //Scaffold.of(context).openEndDrawer();
+                            Navigator.pop(context);
                           });},
                           child: const Text("ОТЗЫВЫ"),
                           style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 72, 216, 22)),
@@ -186,7 +202,7 @@ class _HomeState extends State<Home> {
                         child: ElevatedButton(
                           onPressed: (){setState(() {
                             screen=2;
-                            Scaffold.of(context).openEndDrawer();
+                            Navigator.pop(context);
                           });},
                           child: const Text("О НАС "),
                           style: ElevatedButton.styleFrom(primary: const Color.fromARGB(255, 72, 216, 22)),
