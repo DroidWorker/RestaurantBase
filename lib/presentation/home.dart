@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:restaurant/presentation/aboutScreen.dart';
 import 'package:restaurant/presentation/authRegScreen.dart';
 import 'package:restaurant/presentation/menuTop.dart';
+import 'package:restaurant/presentation/orderitemScreen.dart';
 import 'package:restaurant/presentation/reviewScreen.dart';
 import 'package:restaurant/presentation/searchBox.dart';
 import 'package:restaurant/presentation/topItem.dart';
+
+import 'menuScreen.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -94,9 +97,9 @@ class _HomeState extends State<Home> {
 
           ): screen==2? AboutScreenWidget(
 
-          ): screen==3? const SizedBox.shrink(
+          ): screen==3? MenuScreenWidget(
 
-          ): screen==4? const SizedBox.shrink(
+          ): screen==4? OrderItemScreenWidget(
 
           ): screen==5? const SizedBox.shrink(
 
@@ -140,7 +143,7 @@ class _HomeState extends State<Home> {
                         onPressed: (){
                           setState(() {
                             screenParam=1;
-                            screen=6;
+                            screen=4;
                             Navigator.pop(context);
                           });
                         },
